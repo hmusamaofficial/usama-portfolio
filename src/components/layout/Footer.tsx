@@ -34,7 +34,7 @@ const footerLinks = {
     { name: 'Telegram', href: 'https://t.me/hmusamaofficial', icon: MessageCircle },
   ],
   resources: [
-    { name: 'Resume', href: '/resume.pdf' },
+    { name: 'Resume', href: '/resume.html' },
     { name: 'Linktree', href: 'https://linktr.ee/hmusamaofficial' },
     { name: 'Buy Me a Coffee', href: 'https://www.buymeacoffee.com/hmusamaofficial' },
   ],

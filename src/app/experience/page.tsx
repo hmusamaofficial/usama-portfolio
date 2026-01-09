@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import {
   Briefcase,
   Building2,
@@ -17,7 +18,8 @@ import {
   DollarSign,
   Award,
   Target,
-  Zap
+  Zap,
+  ExternalLink
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -25,9 +27,11 @@ const experience = [
   {
     role: 'QA Engineer',
     company: 'Texinnova Axis',
-    location: 'Pakistan',
-    period: '2024 - Present',
+    logo: 'https://texinnova.com/texinnova.svg',
+    location: 'Lahore, Pakistan',
+    period: 'August 2025 - Present',
     type: 'Full-time',
+    workMode: 'Hybrid (On-site mostly, Remote when needed)',
     current: true,
     description: 'Comprehensive quality assurance for ERPX enterprise system with focus on multi-module testing, AI-powered workflows, and ensuring business-critical functionality.',
     highlights: [
@@ -42,6 +46,42 @@ const experience = [
       'Tested role-based access control and user permissions across all modules',
     ],
     technologies: ['Manual Testing', 'ERPX', 'Jira', 'Agile/Scrum', 'AI-Assisted Testing', 'Git'],
+  },
+  {
+    role: 'R&D Associate',
+    company: 'Burlytex Pvt Ltd',
+    logo: 'https://texinnova.com/icons/burlytex.svg',
+    location: 'Lahore, Pakistan',
+    period: 'July 2025 - July 2025',
+    type: 'Full-time',
+    workMode: 'On-site',
+    current: false,
+    description: 'Applied chemistry expertise in textile R&D at Burlytex headquarters, part of the Burlytex Group of Companies.',
+    highlights: [
+      'Quality control testing for textile products and materials',
+      'Process optimization research for manufacturing efficiency',
+      'Data analysis and technical reporting',
+      'Cross-functional collaboration with production teams',
+    ],
+    technologies: ['R&D', 'Quality Control', 'Data Analysis', 'Chemistry', 'Lab Testing'],
+  },
+  {
+    role: 'R&D Associate',
+    company: 'Top Notch Rubber & Metals',
+    logo: 'https://texinnova.com/icons/topNotchLogo.svg',
+    location: 'Lahore, Pakistan',
+    period: 'May 2025 - June 2025',
+    type: 'Full-time',
+    workMode: 'On-site',
+    current: false,
+    description: 'Material testing and quality assurance for rubber and metal products at Top Notch, a subsidiary of Burlytex Group.',
+    highlights: [
+      'Material testing and analysis for rubber and metal products',
+      'Quality assurance procedures implementation',
+      'Technical documentation and reporting',
+      'Lab equipment operation and maintenance',
+    ],
+    technologies: ['R&D', 'Material Testing', 'Documentation', 'Lab Work', 'Quality Assurance'],
   },
   {
     role: 'Freelance QA & Testing Services',
@@ -141,7 +181,7 @@ export default function ExperiencePage() {
           <div className="relative">
             {/* Timeline Line */}
             <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 to-accent-500 hidden md:block" />
-
+            
             <div className="space-y-12">
               {experience.map((exp, index) => (
                 <motion.div
@@ -154,10 +194,26 @@ export default function ExperiencePage() {
                 >
                   {/* Timeline Dot */}
                   <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 border-4 border-white dark:border-dark-900 shadow-lg hidden md:block z-10" />
-
+                  
                   {/* Content */}
                   <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'}`}>
                     <div className="glass-card p-6 md:p-8">
+                      {/* Company Logo */}
+                      {exp.logo && (
+                        <div className="mb-4">
+                          <div className="w-16 h-16 rounded-xl bg-white dark:bg-dark-800 border border-dark-200 dark:border-dark-700 flex items-center justify-center p-2 shadow-lg">
+                            <img 
+                              src={exp.logo} 
+                              alt={exp.company}
+                              className="w-full h-full object-contain"
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                              }}
+                            />
+                          </div>
+                        </div>
+                      )}
+                      
                       {/* Header */}
                       <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                         <div>
@@ -172,7 +228,7 @@ export default function ExperiencePage() {
                             </span>
                           </div>
                           <h3 className="text-xl md:text-2xl font-bold text-dark-900 dark:text-white">{exp.role}</h3>
-                          <div className="flex items-center gap-2 text-dark-500 dark:text-dark-400 mt-1">
+                          <div className="flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold mt-1">
                             <Building2 className="w-4 h-4" />
                             <span>{exp.company}</span>
                           </div>
@@ -188,6 +244,15 @@ export default function ExperiencePage() {
                           </div>
                         </div>
                       </div>
+
+                      {/* Work Mode Badge */}
+                      {exp.workMode && (
+                        <div className="mb-4">
+                          <span className="px-3 py-1 rounded-full bg-accent-100 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 text-xs font-medium">
+                            {exp.workMode}
+                          </span>
+                        </div>
+                      )}
 
                       {/* Description */}
                       <p className="text-dark-600 dark:text-dark-300 mb-4">{exp.description}</p>
@@ -294,8 +359,9 @@ export default function ExperiencePage() {
                 Get in Touch
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary">
-                Download Resume
+              <a href="/resume.html" target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                <ExternalLink className="w-5 h-5" />
+                View Resume
               </a>
             </div>
           </motion.div>

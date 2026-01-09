@@ -45,7 +45,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Location',
-    value: 'Pakistan',
+    value: 'Lahore, Pakistan',
     href: null,
   },
   {
