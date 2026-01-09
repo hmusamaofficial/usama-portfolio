@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Usama - Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 11px;
+      line-height: 1.5;
+      color: #1a1a2e;
+      background: white;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.5in;
+    }
+    
+    @media print {
+      body { padding: 0; }
+      @page { margin: 0.5in; }
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #FF6B6B;
+    }
+    
+    .name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+    
+    .title {
+      font-size: 14px;
+      color: #FF6B6B;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    
+    .contact-info {
+      text-align: right;
+      font-size: 10px;
+      color: #666;
+    }
+    
+    .contact-info a {
+      color: #FF6B6B;
+      text-decoration: none;
+    }
+    
+    .contact-item {
+      margin-bottom: 3px;
+    }
+    
+    .section {
+      margin-bottom: 18px;
+    }
+    
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FF6B6B;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .summary {
+      color: #444;
+      line-height: 1.6;
+    }
+    
+    .experience-item, .education-item {
+      margin-bottom: 14px;
+    }
+    
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+    
+    .exp-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+    
+    .exp-company {
+      font-weight: 500;
+      color: #FF6B6B;
+    }
+    
+    .exp-date {
+      font-size: 10px;
+      color: #888;
+      text-align: right;
+    }
+    
+    .exp-location {
+      font-size: 10px;
+      color: #666;
+    }
+    
+    .exp-description {
+      color: #555;
+      margin-top: 4px;
+    }
+    
+    .achievements {
+      list-style: none;
+      margin-top: 6px;
+    }
+    
+    .achievements li {
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 3px;
+      color: #444;
+    }
+    
+    .achievements li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #FF6B6B;
+      font-weight: bold;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    
+    .skill-category {
+      margin-bottom: 8px;
+    }
+    
+    .skill-category-title {
+      font-weight: 600;
+      color: #1a1a2e;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+    
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    
+    .skill-tag {
+      background: #f5f5f5;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 9px;
+      color: #555;
+    }
+    
+    .two-column {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, #FF6B6B10, #7C3AED10);
+      padding: 10px;
+      border-radius: 6px;
+      border-left: 3px solid #FF6B6B;
+    }
+    
+    .highlight-stat {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    
+    .stat-value {
+      font-weight: 700;
+      color: #FF6B6B;
+    }
+    
+    .certifications-list {
+      list-style: none;
+    }
+    
+    .certifications-list li {
+      padding: 4px 0;
+      padding-left: 14px;
+      position: relative;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    
+    .certifications-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #22c55e;
+      font-weight: bold;
+    }
+    
+    .links-section {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid #eee;
+      display: flex;
+      gap: 20px;
+      font-size: 10px;
+    }
+    
+    .links-section a {
+      color: #FF6B6B;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="name">Muhammad Usama</div>
+      <div class="title">QA Engineer | ERP Testing Specialist | AI-Powered QA</div>
+    </div>
+    <div class="contact-info">
+      <div class="contact-item">📧 <a href="mailto:hmusama2018@gmail.com">hmusama2018@gmail.com</a></div>
+      <div class="contact-item">📱 +92 313 4544995</div>
+      <div class="contact-item">🔗 <a href="https://hmusama.vercel.app">hmusama.vercel.app</a></div>
+      <div class="contact-item">💼 <a href="https://linkedin.com/in/hmusama">linkedin.com/in/hmusama</a></div>
+      <div class="contact-item">🐙 <a href="https://github.com/hmusamaofficial">github.com/hmusamaofficial</a></div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="section">
+    <div class="section-title">Professional Summary</div>
+    <p class="summary">
+      Detail-oriented <strong>QA Engineer</strong> with a unique MS Chemistry background providing exceptional analytical thinking. 
+      Specialized in <strong>ERP system testing</strong> with experience testing 10+ modules of ERPX (Financials, HR, Sales, Purchase, Inventory). 
+      Pioneer in leveraging <strong>AI-powered testing workflows</strong> using ChatGPT, Claude, GitHub Copilot, and MCP Protocol. 
+      Known for finding 500+ critical bugs and creating comprehensive test documentation. Available for freelance and full-time opportunities.
+    </p>
+  </div>
+
+  <div class="two-column">
+    <div>
+      <!-- Experience -->
+      <div class="section">
+        <div class="section-title">Professional Experience</div>
+        
+        <div class="experience-item">
+          <div class="exp-header">
+            <div>
+              <span class="exp-title">QA Engineer</span> | <span class="exp-company">Texinnova</span>
+            </div>
+            <div class="exp-date">Jan 2025 - Present</div>
+          </div>
+          <div class="exp-location">Remote | Full-time</div>
+          <ul class="achievements">
+            <li>Lead QA for ERPX - comprehensive ERP system with 10+ integrated modules</li>
+            <li>Tested Financials, HR & Payroll, Sales, Purchase, and Inventory modules end-to-end</li>
+            <li>Identified 500+ critical bugs before production deployment</li>
+            <li>Pioneered AI-powered testing using MCP Protocol and AI assistants</li>
+            <li>Created comprehensive test cases, bug reports, and QA documentation</li>
+            <li>Collaborated with development team in Agile/Scrum environment</li>
+          </ul>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-header">
+            <div>
+              <span class="exp-title">R&D Associate</span> | <span class="exp-company">Burlytex Pvt Ltd</span>
+            </div>
+            <div class="exp-date">2023 - 2024</div>
+          </div>
+          <div class="exp-location">Lahore, Pakistan | Full-time</div>
+          <ul class="achievements">
+            <li>Applied chemistry expertise in textile R&D and quality control</li>
+            <li>Conducted quality testing and process optimization research</li>
+            <li>Performed data analysis and prepared technical reports</li>
+            <li>Collaborated cross-functionally on product development</li>
+          </ul>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-header">
+            <div>
+              <span class="exp-title">R&D Intern</span> | <span class="exp-company">Top Notch Rubber & Metals</span>
+            </div>
+            <div class="exp-date">2022 - 2023</div>
+          </div>
+          <div class="exp-location">Lahore, Pakistan | Internship</div>
+          <ul class="achievements">
+            <li>Material testing and quality assurance for rubber/metal products</li>
+            <li>Lab equipment operation and technical documentation</li>
+            <li>Research on material properties and product quality</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="section">
+        <div class="section-title">Education</div>
+        
+        <div class="education-item">
+          <div class="exp-header">
+            <div>
+              <span class="exp-title">Master of Science (MS) in Chemistry</span>
+            </div>
+            <div class="exp-date">2021 - 2023</div>
+          </div>
+          <div class="exp-location">University of the Punjab, Lahore, Pakistan</div>
+          <p class="exp-description">Research focus on analytical chemistry. Developed analytical thinking and research methodology skills applied to QA.</p>
+        </div>
+
+        <div class="education-item">
+          <div class="exp-header">
+            <div>
+              <span class="exp-title">Bachelor of Science (BS) in Chemistry</span>
+            </div>
+            <div class="exp-date">2017 - 2021</div>
+          </div>
+          <div class="exp-location">University of the Punjab, Lahore, Pakistan</div>
+          <p class="exp-description">Foundation in scientific methodology, data analysis, and systematic problem-solving.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <!-- Key Highlights -->
+      <div class="section">
+        <div class="section-title">Key Highlights</div>
+        <div class="highlight">
+          <div class="highlight-stat">
+            <span>ERP Modules Tested</span>
+            <span class="stat-value">10+</span>
+          </div>
+          <div class="highlight-stat">
+            <span>Bugs Identified</span>
+            <span class="stat-value">500+</span>
+          </div>
+          <div class="highlight-stat">
+            <span>GitHub Contributions</span>
+            <span class="stat-value">650+</span>
+          </div>
+          <div class="highlight-stat">
+            <span>Years Experience</span>
+            <span class="stat-value">1+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="section">
+        <div class="section-title">Technical Skills</div>
+        
+        <div class="skill-category">
+          <div class="skill-category-title">🔍 Testing Expertise</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Manual Testing</span>
+            <span class="skill-tag">Regression</span>
+            <span class="skill-tag">UAT</span>
+            <span class="skill-tag">Smoke Testing</span>
+            <span class="skill-tag">Exploratory</span>
+            <span class="skill-tag">Integration</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-category-title">🏢 ERP Modules</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Financials</span>
+            <span class="skill-tag">HR & Payroll</span>
+            <span class="skill-tag">Sales</span>
+            <span class="skill-tag">Purchase</span>
+            <span class="skill-tag">Inventory</span>
+            <span class="skill-tag">Stock Mgmt</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-category-title">🤖 AI Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag">ChatGPT</span>
+            <span class="skill-tag">GitHub Copilot</span>
+            <span class="skill-tag">Claude AI</span>
+            <span class="skill-tag">Gemini</span>
+            <span class="skill-tag">MCP Protocol</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-category-title">🛠️ Tools & Methods</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Git/GitHub</span>
+            <span class="skill-tag">Agile/Scrum</span>
+            <span class="skill-tag">SDLC</span>
+            <span class="skill-tag">STLC</span>
+            <span class="skill-tag">VS Code</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications & Learning -->
+      <div class="section">
+        <div class="section-title">Specializations</div>
+        <ul class="certifications-list">
+          <li>ERP System Testing</li>
+          <li>AI-Powered QA Workflows</li>
+          <li>Test Case Design</li>
+          <li>Bug Documentation</li>
+          <li>Quality Assurance</li>
+        </ul>
+      </div>
+
+      <!-- Languages -->
+      <div class="section">
+        <div class="section-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">English (Professional)</span>
+          <span class="skill-tag">Urdu (Native)</span>
+          <span class="skill-tag">Punjabi (Native)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Links -->
+  <div class="links-section">
+    <span><strong>Portfolio:</strong> <a href="https://hmusama.vercel.app">hmusama.vercel.app</a></span>
+    <span><strong>Upwork:</strong> <a href="https://www.upwork.com/freelancers/~01c5bcc00e0f0a4a9e">Hire Me</a></span>
+    <span><strong>Fiverr:</strong> <a href="https://www.fiverr.com/hmusamaa">fiverr.com/hmusamaa</a></span>
+  </div>
+
+  <!-- Print/Download Button (hidden on print) -->
+  <div class="print-button" style="position: fixed; bottom: 20px; right: 20px; z-index: 100;">
+    <button onclick="window.print()" style="
+      background: linear-gradient(135deg, #FF6B6B, #7C3AED);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(255, 107, 107, 0.4)';" 
+       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(255, 107, 107, 0.3)';">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7,10 12,15 17,10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download PDF
+    </button>
+  </div>
+
+  <style>
+    @media print {
+      .print-button { display: none !important; }
+    }
+  </style>
+</body>
+</html>
