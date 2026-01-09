@@ -60,7 +60,7 @@ const education = [
   },
   {
     degree: 'Bachelor of Science (BS) in Chemistry',
-    institution: 'University of the Education',
+    institution: 'University of the Punjab',
     location: 'Lahore, Pakistan', 
     period: '2019 - 2023',
     description: 'Built foundation in scientific methodology, data analysis, and systematic problem-solving approaches.',
