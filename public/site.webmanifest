@@ -1,0 +1,17 @@
+{
+  "name": "Muhammad Usama - QA Engineer",
+  "short_name": "MU Portfolio",
+  "description": "Professional QA Engineer Portfolio - Muhammad Usama",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0D1117",
+  "theme_color": "#FF6B6B",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
