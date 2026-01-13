@@ -27,6 +27,7 @@ const experience = [
   {
     role: 'QA Engineer',
     company: 'Texinnova Axis',
+    companyUrl: 'https://texinnova.com/',
     logo: 'https://texinnova.com/texinnova.svg',
     location: 'Lahore, Pakistan',
     period: 'August 2025 - Present',
@@ -50,6 +51,7 @@ const experience = [
   {
     role: 'R&D Associate',
     company: 'Burlytex Pvt Ltd',
+    companyUrl: 'https://burlytex.pk/',
     logo: 'https://texinnova.com/icons/burlytex.svg',
     location: 'Lahore, Pakistan',
     period: 'July 2025 - July 2025',
@@ -68,6 +70,7 @@ const experience = [
   {
     role: 'R&D Associate',
     company: 'Top Notch Rubber & Metals',
+    companyUrl: 'https://tnrm.pk/',
     logo: 'https://texinnova.com/icons/topNotchLogo.svg',
     location: 'Lahore, Pakistan',
     period: 'May 2025 - June 2025',
@@ -86,6 +89,7 @@ const experience = [
   {
     role: 'Freelance QA & Testing Services',
     company: 'Upwork & Fiverr',
+    companyUrl: 'https://www.upwork.com/freelancers/~01c5bcc00e0f0a4a9e',
     location: 'Remote',
     period: '2023 - Present',
     type: 'Freelance',
@@ -188,7 +192,7 @@ export default function ExperiencePage() {
                   key={exp.role + exp.company}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, amount: 0.3 }}
                   transition={{ delay: index * 0.1 }}
                   className={`relative md:flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-start gap-8`}
                 >
@@ -201,11 +205,12 @@ export default function ExperiencePage() {
                       {/* Company Logo */}
                       {exp.logo && (
                         <div className="mb-4">
-                          <div className="w-16 h-16 rounded-xl bg-white dark:bg-dark-800 border border-dark-200 dark:border-dark-700 flex items-center justify-center p-2 shadow-lg">
+                          <div className="w-20 h-20 rounded-xl bg-white border-2 border-dark-200 dark:border-dark-600 flex items-center justify-center p-3 shadow-lg">
                             <img 
                               src={exp.logo} 
                               alt={exp.company}
                               className="w-full h-full object-contain"
+                              style={{ filter: 'none' }}
                               onError={(e) => {
                                 e.currentTarget.style.display = 'none';
                               }}
@@ -228,10 +233,16 @@ export default function ExperiencePage() {
                             </span>
                           </div>
                           <h3 className="text-xl md:text-2xl font-bold text-dark-900 dark:text-white">{exp.role}</h3>
-                          <div className="flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold mt-1">
+                          <a 
+                            href={exp.companyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold mt-1 hover:underline"
+                          >
                             <Building2 className="w-4 h-4" />
                             <span>{exp.company}</span>
-                          </div>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
                         </div>
                         <div className="text-right">
                           <div className="flex items-center gap-2 text-dark-500 dark:text-dark-400 text-sm">
@@ -296,7 +307,7 @@ export default function ExperiencePage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-12"
           >
             <h2 className="section-title">
@@ -313,7 +324,7 @@ export default function ExperiencePage() {
                 key={module.name}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ y: -5 }}
                 className="glass-card p-6"
@@ -344,7 +355,7 @@ export default function ExperiencePage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="glass-card p-8 md:p-12 text-center"
           >
             <Zap className="w-12 h-12 text-primary-500 mx-auto mb-4" />
@@ -355,10 +366,10 @@ export default function ExperiencePage() {
               I&apos;m actively seeking new QA opportunities where I can contribute my testing expertise and passion for quality.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="btn-primary">
+              <a href="mailto:hmusama2018@gmail.com" className="btn-primary">
                 Get in Touch
                 <ArrowRight className="w-5 h-5" />
-              </Link>
+              </a>
               <a href="/resume.html" target="_blank" rel="noopener noreferrer" className="btn-secondary">
                 <ExternalLink className="w-5 h-5" />
                 View Resume

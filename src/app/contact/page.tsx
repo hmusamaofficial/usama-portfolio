@@ -149,15 +149,25 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Build mailto link with form data
+    const subject = encodeURIComponent(formData.subject || 'Contact from Portfolio Website');
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
     
-    setIsSubmitting(false);
+    // Open email client
+    window.location.href = `mailto:hmusama2018@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Show success message
     setIsSubmitted(true);
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    
+    // Reset success message after 5 seconds
+    setTimeout(() => setIsSubmitted(false), 5000);
+  };
     setFormData({ name: '', email: '', subject: '', message: '' });
     
     // Reset success message after 5 seconds

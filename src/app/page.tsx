@@ -48,6 +48,13 @@ const socialLinks = [
   { name: 'Email', href: 'mailto:hmusama2018@gmail.com', icon: Mail },
 ];
 
+// Company URLs
+const companyUrls: Record<string, string> = {
+  'Texinnova': 'https://texinnova.com/',
+  'Burlytex Pvt Ltd': 'https://burlytex.pk/',
+  'Top Notch Rubber & Metals': 'https://tnrm.pk/',
+};
+
 // Education data
 const education = [
   {
@@ -73,6 +80,7 @@ const experiences = [
   {
     title: 'QA Engineer',
     company: 'Texinnova',
+    companyUrl: 'https://texinnova.com/',
     logo: 'https://texinnova.com/texinnova.svg',
     period: 'August 2025 - Present',
     location: 'Lahore, Pakistan (Hybrid)',
@@ -89,6 +97,7 @@ const experiences = [
   {
     title: 'Research & Development Associate',
     company: 'Burlytex Pvt Ltd',
+    companyUrl: 'https://burlytex.pk/',
     logo: 'https://texinnova.com/icons/burlytex.svg',
     period: 'July 2025 - July 2025',
     location: 'Lahore, Pakistan',
@@ -105,6 +114,7 @@ const experiences = [
   {
     title: 'R&D Associate',
     company: 'Top Notch Rubber & Metals',
+    companyUrl: 'https://tnrm.pk/',
     logo: 'https://texinnova.com/icons/topNotchLogo.svg',
     period: 'May 2025 - June 2025',
     location: 'Lahore, Pakistan',
@@ -267,6 +277,10 @@ export default function Home() {
                     2000,
                     'AI-Powered QA Expert',
                     2000,
+                    'Vibe Coding Expert',
+                    2000,
+                    'Prompt Engineering Enthusiast',
+                    2000,
                   ]}
                   wrapper="span"
                   speed={50}
@@ -292,10 +306,10 @@ export default function Home() {
                 transition={{ delay: 0.7 }}
                 className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8"
               >
-                <Link href="/contact" className="btn-primary">
+                <a href="mailto:hmusama2018@gmail.com" className="btn-primary">
                   <Mail className="w-5 h-5" />
                   Get in Touch
-                </Link>
+                </a>
                 <a 
                   href="/resume.html" 
                   target="_blank" 
@@ -317,8 +331,8 @@ export default function Home() {
                   <a
                     key={link.name}
                     href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={link.href.startsWith('mailto') ? undefined : '_blank'}
+                    rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
                     className="p-3 rounded-xl glass hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors"
                     aria-label={link.name}
                   >
@@ -337,16 +351,40 @@ export default function Home() {
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full blur-3xl opacity-30 animate-pulse" />
-                <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-white dark:border-dark-800 shadow-2xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
-                  <span className="text-8xl font-bold text-white">MU</span>
+                <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-white dark:border-dark-800 shadow-2xl">
+                  <Image
+                    src="/profile.jpg"
+                    alt="Muhammad Usama"
+                    fill
+                    className="object-cover"
+                    priority
+                    onError={(e) => {
+                      // Fallback to initials if image fails
+                      e.currentTarget.style.display = 'none';
+                      const parent = e.currentTarget.parentElement;
+                      if (parent) {
+                        parent.classList.add('bg-gradient-to-br', 'from-primary-500', 'to-accent-500', 'flex', 'items-center', 'justify-center');
+                        const span = document.createElement('span');
+                        span.className = 'text-8xl font-bold text-white';
+                        span.textContent = 'MU';
+                        parent.appendChild(span);
+                      }
+                    }}
+                  />
                 </div>
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ repeat: Infinity, duration: 3 }}
-                  className="absolute -top-4 -right-4 p-4 glass-card"
-                >
-                  <Bug className="w-8 h-8 text-primary-500" />
-                </motion.div>
+                {/* Bug icon with fixed hover - only border moves, not the icon inside */}
+                <div className="absolute -top-4 -right-4 group">
+                  <motion.div
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ repeat: Infinity, duration: 3 }}
+                    className="relative"
+                  >
+                    <div className="absolute inset-0 rounded-2xl border-2 border-primary-500/50 group-hover:scale-110 transition-transform duration-300" />
+                    <div className="p-4 glass-card relative z-10">
+                      <Bug className="w-8 h-8 text-primary-500" />
+                    </div>
+                  </motion.div>
+                </div>
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ repeat: Infinity, duration: 3, delay: 1 }}
@@ -386,7 +424,7 @@ export default function Home() {
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 className="glass-card p-6 text-center group hover:border-primary-500/50 transition-colors"
               >
@@ -405,7 +443,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-12"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary-600 dark:text-primary-400 mb-4">
@@ -421,17 +459,22 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.3 }}
               className="glass-card p-8"
             >
               <p className="text-dark-600 dark:text-dark-300 text-lg leading-relaxed mb-6">
-                I&apos;m a <strong className="text-primary-600 dark:text-primary-400">QA Engineer</strong> at Texinnova with a unique background - 
-                an <strong>MS in Chemistry</strong> that gives me exceptional analytical thinking and attention to detail.
+                I&apos;m a <strong className="text-primary-600 dark:text-primary-400">QA Engineer</strong> at{' '}
+                <a 
+                  href="https://texinnova.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary-600 dark:text-primary-400 hover:underline"
+                >
+                  Texinnova
+                </a> with a unique background - an <strong>MS in Chemistry</strong> that gives me exceptional analytical thinking and attention to detail.
               </p>
               <p className="text-dark-600 dark:text-dark-300 text-lg leading-relaxed mb-6">
-                I specialize in <strong className="text-primary-600 dark:text-primary-400">ERP system testing</strong>, having tested 10+ modules 
-                of ERPX including Financials, HR, Sales, Purchase, and Inventory. I leverage <strong>AI-powered tools</strong> like 
-                ChatGPT, Claude, and GitHub Copilot to enhance testing efficiency.
+                I specialize in <strong className="text-primary-600 dark:text-primary-400">ERP system testing</strong>, having tested 10+ modules of ERPX including Financials, HR, Sales, Purchase, and Inventory. I leverage <strong>AI-powered tools</strong> like ChatGPT, Claude, and GitHub Copilot to enhance testing efficiency.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/about" className="btn-primary">
@@ -444,7 +487,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.3 }}
               className="space-y-4"
             >
               {[
@@ -457,7 +500,7 @@ export default function Home() {
                   key={item.title}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, amount: 0.3 }}
                   transition={{ delay: index * 0.1 }}
                   className="flex items-center gap-4 p-4 glass-card hover:border-primary-500/50 transition-colors"
                 >
@@ -481,7 +524,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-12"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary-600 dark:text-primary-400 mb-4">
@@ -499,7 +542,7 @@ export default function Home() {
                 key={edu.degree}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 className="glass-card p-6 hover:border-primary-500/50 transition-colors"
               >
@@ -535,7 +578,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-12"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary-600 dark:text-primary-400 mb-4">
@@ -553,7 +596,7 @@ export default function Home() {
                 key={exp.company}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 className="glass-card p-6 md:p-8 hover:border-primary-500/50 transition-all duration-300"
               >
@@ -579,7 +622,15 @@ export default function Home() {
                     <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                       <div>
                         <h3 className="text-xl font-bold text-dark-900 dark:text-white">{exp.title}</h3>
-                        <p className="text-primary-600 dark:text-primary-400 font-semibold">{exp.company}</p>
+                        <a 
+                          href={exp.companyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary-600 dark:text-primary-400 font-semibold hover:underline inline-flex items-center gap-1"
+                        >
+                          {exp.company}
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
                       </div>
                       <span className="px-3 py-1 rounded-full text-xs font-medium bg-accent-100 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400">
                         {exp.type}
@@ -627,7 +678,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mt-8"
           >
             <Link href="/experience" className="btn-secondary">
@@ -643,7 +694,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-12"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary-600 dark:text-primary-400 mb-4">
@@ -661,7 +712,7 @@ export default function Home() {
                 key={category.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 className="glass-card p-6 hover:border-primary-500/50 transition-colors"
               >
@@ -686,7 +737,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mt-8"
           >
             <Link href="/skills" className="btn-secondary">
@@ -702,7 +753,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-12"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary-600 dark:text-primary-400 mb-4">
@@ -720,7 +771,7 @@ export default function Home() {
                 key={project.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 className="glass-card overflow-hidden group hover:border-primary-500/50 transition-all"
               >
@@ -745,7 +796,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mt-8"
           >
             <Link href="/projects" className="btn-secondary">
@@ -761,7 +812,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-12"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary-600 dark:text-primary-400 mb-4">
@@ -779,7 +830,7 @@ export default function Home() {
                 key={service.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 className="glass-card p-6 text-center hover:border-primary-500/50 transition-colors group"
               >
@@ -795,7 +846,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mt-8"
           >
             <Link href="/services" className="btn-secondary">
@@ -812,7 +863,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="glass-card p-8 md:p-12 text-center max-w-4xl mx-auto"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary-600 dark:text-primary-400 mb-6">
@@ -827,10 +878,10 @@ export default function Home() {
               Let&apos;s discuss how I can help ensure quality in your software projects.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="btn-primary">
+              <a href="mailto:hmusama2018@gmail.com" className="btn-primary">
                 <Mail className="w-5 h-5" />
-                Contact Me
-              </Link>
+                Email Me
+              </a>
               <a
                 href="https://wa.me/923134544995"
                 target="_blank"
