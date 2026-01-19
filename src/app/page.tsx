@@ -353,7 +353,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full blur-3xl opacity-30 animate-pulse" />
                 <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-white dark:border-dark-800 shadow-2xl">
                   <Image
-                    src="/profile.jpg"
+                    src="https://avatars.githubusercontent.com/u/108584209?v=4"
                     alt="Muhammad Usama"
                     fill
                     className="object-cover"
