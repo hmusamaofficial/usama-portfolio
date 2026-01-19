@@ -151,17 +151,27 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Build mailto link with form data
+    // Build mailto link with form data - opens user's email client
     const subject = encodeURIComponent(formData.subject || 'Contact from Portfolio Website');
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      `Hi Muhammad Usama,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\n---\nSent from your Portfolio Contact Form`
     );
     
-    // Open email client
-    window.location.href = `mailto:hmusama2018@gmail.com?subject=${subject}&body=${body}`;
+    // Open email client with pre-filled data
+    const mailtoLink = `mailto:hmusama2018@gmail.com?subject=${subject}&body=${body}`;
     
-    // Show success message
+    // Create a temporary link and click it to open email client
+    const link = document.createElement('a');
+    link.href = mailtoLink;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Show success message and reset form
+    setIsSubmitting(false);
     setIsSubmitted(true);
     setFormData({ name: '', email: '', subject: '', message: '' });
     

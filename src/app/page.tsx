@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, useScroll, useSpring } from 'framer-motion';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import Link from 'next/link';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
@@ -82,6 +83,7 @@ const experiences = [
     company: 'Texinnova',
     companyUrl: 'https://texinnova.com/',
     logo: 'https://texinnova.com/texinnova.svg',
+    logoLight: 'https://texinnova.com/texinnova-dark.svg',
     period: 'August 2025 - Present',
     location: 'Lahore, Pakistan (Hybrid)',
     type: 'Full-time',
@@ -202,6 +204,7 @@ const services = [
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
+  const { theme } = useTheme();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   return (
@@ -372,18 +375,14 @@ export default function Home() {
                     }}
                   />
                 </div>
-                {/* Bug icon with fixed hover - only border moves, not the icon inside */}
-                <div className="absolute -top-4 -right-4 group">
-                  <motion.div
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ repeat: Infinity, duration: 3 }}
-                    className="relative"
-                  >
-                    <div className="absolute inset-0 rounded-2xl border-2 border-primary-500/50 group-hover:scale-110 transition-transform duration-300" />
-                    <div className="p-4 glass-card relative z-10">
-                      <Bug className="w-8 h-8 text-primary-500" />
-                    </div>
-                  </motion.div>
+                {/* Bug icon - ONLY border scales on hover, icon stays completely still */}
+                <div className="absolute -top-4 -right-4 group cursor-pointer">
+                  {/* Border that ONLY scales on hover */}
+                  <div className="absolute -inset-2 rounded-2xl border-2 border-primary-500/50 group-hover:scale-110 group-hover:border-primary-500 transition-all duration-300 ease-out" />
+                  {/* Static icon - no animation */}
+                  <div className="p-4 glass-card rounded-2xl relative z-10">
+                    <Bug className="w-8 h-8 text-primary-500" />
+                  </div>
                 </div>
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
@@ -601,11 +600,11 @@ export default function Home() {
                 className="glass-card p-6 md:p-8 hover:border-primary-500/50 transition-all duration-300"
               >
                 <div className="flex flex-col md:flex-row gap-6">
-                  {/* Company Logo */}
+                  {/* Company Logo - Larger and theme-aware */}
                   <div className="flex-shrink-0">
-                    <div className="w-20 h-20 rounded-xl bg-white dark:bg-dark-800 border border-dark-200 dark:border-dark-700 flex items-center justify-center p-3 shadow-lg">
+                    <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-white border-2 border-dark-200 dark:border-dark-600 flex items-center justify-center p-4 shadow-xl">
                       <img 
-                        src={exp.logo} 
+                        src={exp.logoLight && theme === 'light' ? exp.logoLight : exp.logo} 
                         alt={exp.company}
                         className="w-full h-full object-contain"
                         onError={(e) => {
@@ -613,7 +612,7 @@ export default function Home() {
                           e.currentTarget.nextElementSibling?.classList.remove('hidden');
                         }}
                       />
-                      <Building2 className="w-10 h-10 text-primary-500 hidden" />
+                      <Building2 className="w-12 h-12 text-primary-500 hidden" />
                     </div>
                   </div>
 

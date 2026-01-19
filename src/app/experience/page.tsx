@@ -22,6 +22,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import Link from 'next/link';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 const experience = [
   {
@@ -29,6 +30,7 @@ const experience = [
     company: 'Texinnova Axis',
     companyUrl: 'https://texinnova.com/',
     logo: 'https://texinnova.com/texinnova.svg',
+    logoLight: 'https://texinnova.com/texinnova-dark.svg',
     location: 'Lahore, Pakistan',
     period: 'August 2025 - Present',
     type: 'Full-time',
@@ -123,6 +125,8 @@ const achievements = [
 ];
 
 export default function ExperiencePage() {
+  const { theme } = useTheme();
+  
   return (
     <div className="pt-24 pb-20">
       {/* Hero Section */}
