@@ -431,7 +431,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-12"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-accent-600 dark:text-accent-400 mb-4">
@@ -455,7 +455,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.03, y: -5 }}
                 className="glass-card p-6 text-center group hover:border-primary-500/50 dark:hover:border-primary-400/50 transition-all duration-300"
@@ -484,7 +484,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.4 }}
             className="mt-12 text-center"
           >
@@ -528,7 +528,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="glass-card p-8 md:p-12 text-center"
           >
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-dark-900 dark:text-white">

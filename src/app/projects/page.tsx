@@ -170,7 +170,7 @@ export default function ProjectsPage() {
                 key={project.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 className="glass-card overflow-hidden group hover:border-primary-500/50 dark:hover:border-primary-400/50 transition-all duration-300"
               >
@@ -266,7 +266,7 @@ export default function ProjectsPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="glass-card p-8 md:p-12 text-center"
           >
             <Github className="w-16 h-16 text-dark-600 dark:text-dark-300 mx-auto mb-6" />

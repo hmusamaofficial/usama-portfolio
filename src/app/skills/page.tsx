@@ -239,7 +239,7 @@ export default function SkillsPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-12"
           >
             <h2 className="section-title">
@@ -256,7 +256,7 @@ export default function SkillsPage() {
                 key={item.text}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ scale: 1.02 }}
                 className="flex items-center gap-3 p-4 rounded-xl glass"
@@ -277,7 +277,7 @@ export default function SkillsPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="glass-card p-8 md:p-12 text-center"
           >
             <h2 className="text-2xl md:text-3xl font-bold mb-6 text-dark-900 dark:text-white">
@@ -293,7 +293,7 @@ export default function SkillsPage() {
                   key={cert.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, amount: 0.3 }}
                   transition={{ delay: index * 0.1 }}
                   className="px-6 py-4 rounded-xl glass border-2 border-primary-200 dark:border-primary-800"
                 >

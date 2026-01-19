@@ -178,7 +178,7 @@ export default function ServicesPage() {
                 key={service.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
                 className="glass-card p-6 md:p-8 group"
@@ -208,7 +208,7 @@ export default function ServicesPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-12"
           >
             <h2 className="section-title">
@@ -225,7 +225,7 @@ export default function ServicesPage() {
                 key={item.step}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 className="relative"
               >
@@ -255,7 +255,7 @@ export default function ServicesPage() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.3 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Why Hire Me as Your <span className="gradient-text">QA Partner</span>?
@@ -282,7 +282,7 @@ export default function ServicesPage() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.3 }}
               className="glass-card p-8 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-500/20 to-accent-500/20 rounded-full blur-2xl" />
@@ -328,7 +328,7 @@ export default function ServicesPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="glass-card p-8 md:p-12 text-center relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-32 h-32 bg-primary-500/10 rounded-full blur-2xl" />

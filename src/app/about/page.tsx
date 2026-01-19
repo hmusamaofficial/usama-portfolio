@@ -181,7 +181,7 @@ export default function AboutPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-16"
           >
             <h2 className="section-title">
@@ -198,7 +198,7 @@ export default function AboutPage() {
                 key={item.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 className="relative"
               >
@@ -225,7 +225,7 @@ export default function AboutPage() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.3 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 🎯 Why QA? <span className="gradient-text">Why Me?</span>
@@ -265,7 +265,7 @@ export default function AboutPage() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.3 }}
               className="glass-card p-8 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-500/20 to-accent-500/20 rounded-full blur-2xl" />
@@ -296,7 +296,7 @@ export default function AboutPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-16"
           >
             <h2 className="section-title">
@@ -313,7 +313,7 @@ export default function AboutPage() {
                 key={value.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
                 className="glass-card p-6 text-center group"
@@ -335,7 +335,7 @@ export default function AboutPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="glass-card p-8 md:p-12"
           >
             <h3 className="text-2xl font-bold text-center mb-8 text-dark-900 dark:text-white">
@@ -347,7 +347,7 @@ export default function AboutPage() {
                   key={fact.label}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, amount: 0.3 }}
                   transition={{ delay: index * 0.1 }}
                   className="text-center"
                 >
