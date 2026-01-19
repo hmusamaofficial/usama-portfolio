@@ -168,11 +168,6 @@ export default function ContactPage() {
     // Reset success message after 5 seconds
     setTimeout(() => setIsSubmitted(false), 5000);
   };
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
