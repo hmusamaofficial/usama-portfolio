@@ -209,12 +209,11 @@ export default function ExperiencePage() {
                       {/* Company Logo */}
                       {exp.logo && (
                         <div className="mb-4">
-                          <div className="w-20 h-20 rounded-xl bg-white border-2 border-dark-200 dark:border-dark-600 flex items-center justify-center p-3 shadow-lg">
+                          <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-white border-2 border-dark-200 dark:border-dark-500 flex items-center justify-center p-4 shadow-xl">
                             <img 
-                              src={exp.logo} 
+                              src={exp.logoLight && theme === 'light' ? exp.logoLight : exp.logo} 
                               alt={exp.company}
                               className="w-full h-full object-contain"
-                              style={{ filter: 'none' }}
                               onError={(e) => {
                                 e.currentTarget.style.display = 'none';
                               }}

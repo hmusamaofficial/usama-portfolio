@@ -149,34 +149,39 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage('');
     
-    // Build mailto link with form data - opens user's email client
-    const subject = encodeURIComponent(formData.subject || 'Contact from Portfolio Website');
-    const body = encodeURIComponent(
-      `Hi Muhammad Usama,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\n---\nSent from your Portfolio Contact Form`
-    );
-    
-    // Open email client with pre-filled data
-    const mailtoLink = `mailto:hmusama2018@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Create a temporary link and click it to open email client
-    const link = document.createElement('a');
-    link.href = mailtoLink;
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    // Show success message and reset form
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setIsSubmitted(false), 8000);
+      } else {
+        setErrorMessage(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      setErrorMessage('Network error. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -239,11 +244,20 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-xl font-bold text-dark-900 dark:text-white mb-2">Message Sent!</h3>
                   <p className="text-dark-500 dark:text-dark-400">
-                    Thank you for reaching out. I&apos;ll get back to you as soon as possible.
+                    Thank you for reaching out. I&apos;ve received your message and a confirmation has been sent to your email. I&apos;ll get back to you within 24 hours.
                   </p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {errorMessage && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800"
+                    >
+                      <p className="text-red-600 dark:text-red-400 text-sm font-medium">{errorMessage}</p>
+                    </motion.div>
+                  )}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">

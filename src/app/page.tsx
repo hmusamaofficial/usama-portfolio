@@ -375,13 +375,15 @@ export default function Home() {
                     }}
                   />
                 </div>
-                {/* Bug icon - ONLY border scales on hover, icon stays completely still */}
-                <div className="absolute -top-4 -right-4 group cursor-pointer">
-                  {/* Border that ONLY scales on hover */}
-                  <div className="absolute -inset-2 rounded-2xl border-2 border-primary-500/50 group-hover:scale-110 group-hover:border-primary-500 transition-all duration-300 ease-out" />
-                  {/* Static icon - no animation */}
-                  <div className="p-4 glass-card rounded-2xl relative z-10">
-                    <Bug className="w-8 h-8 text-primary-500" />
+                {/* Bug icon - ONLY the outer ring/border moves on hover, icon stays still */}
+                <div className="absolute -top-4 -right-4">
+                  <div className="relative group cursor-pointer">
+                    {/* Outer ring - this is what scales on hover */}
+                    <div className="absolute inset-[-6px] rounded-2xl border-[2.5px] border-primary-400/60 group-hover:inset-[-12px] group-hover:border-primary-500 transition-all duration-300 ease-out pointer-events-none" />
+                    {/* Icon tile - stays completely still */}
+                    <div className="p-4 bg-white/80 dark:bg-dark-800/80 backdrop-blur-lg rounded-2xl shadow-lg">
+                      <Bug className="w-8 h-8 text-primary-500" />
+                    </div>
                   </div>
                 </div>
                 <motion.div
