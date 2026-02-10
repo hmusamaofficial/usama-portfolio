@@ -82,8 +82,8 @@ const experiences = [
     title: 'QA Engineer',
     company: 'Texinnova',
     companyUrl: 'https://texinnova.com/',
-    logo: 'https://texinnova.com/texinnova.svg',
-    logoLight: 'https://texinnova.com/texinnova-dark.svg',
+    logo: '/logos/texinnova.svg',
+    logoLight: '/logos/texinnova-dark.svg',
     period: 'August 2025 - Present',
     location: 'Lahore, Pakistan (Hybrid)',
     type: 'Full-time',
@@ -100,7 +100,7 @@ const experiences = [
     title: 'Research & Development Associate',
     company: 'Burlytex Pvt Ltd',
     companyUrl: 'https://burlytex.pk/',
-    logo: 'https://texinnova.com/icons/burlytex.svg',
+    logo: '/logos/burlytex.svg',
     period: 'July 2025 - July 2025',
     location: 'Lahore, Pakistan',
     type: 'Full-time',
@@ -117,7 +117,7 @@ const experiences = [
     title: 'R&D Associate',
     company: 'Top Notch Rubber & Metals',
     companyUrl: 'https://tnrm.pk/',
-    logo: 'https://texinnova.com/icons/topNotchLogo.svg',
+    logo: '/logos/topnotch.png',
     period: 'May 2025 - June 2025',
     location: 'Lahore, Pakistan',
     type: 'Full-time',
@@ -375,16 +375,12 @@ export default function Home() {
                     }}
                   />
                 </div>
-                {/* Bug icon - ONLY the outer ring/border moves on hover, icon stays still */}
-                <div className="absolute -top-4 -right-4">
-                  <div className="relative group cursor-pointer">
-                    {/* Outer ring - this is what scales on hover */}
-                    <div className="absolute inset-[-6px] rounded-2xl border-[2.5px] border-primary-400/60 group-hover:inset-[-12px] group-hover:border-primary-500 transition-all duration-300 ease-out pointer-events-none" />
-                    {/* Icon tile - stays completely still */}
-                    <div className="p-4 bg-white/80 dark:bg-dark-800/80 backdrop-blur-lg rounded-2xl shadow-lg">
-                      <Bug className="w-8 h-8 text-primary-500" />
-                    </div>
+                {/* Bug icon - icon is static, ONLY the border ring expands on hover */}
+                <div className="absolute -top-4 -right-4 group/bug cursor-pointer">
+                  <div className="p-4 bg-white/80 dark:bg-dark-800/80 backdrop-blur-lg rounded-2xl shadow-lg relative z-10">
+                    <Bug className="w-8 h-8 text-primary-500" />
                   </div>
+                  <div className="absolute inset-0 rounded-2xl border-2 border-primary-500/40 transition-all duration-300 ease-out group-hover/bug:-inset-2 group-hover/bug:border-primary-500" />
                 </div>
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
