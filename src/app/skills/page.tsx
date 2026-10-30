@@ -14,8 +14,8 @@ export default function Skills() {
         title="A practical testing toolkit."
       >
         <p>
-          Capabilities described by their use in the work. No percentage bars or
-          claims of mastery.
+          The tools I use to investigate issues, automate checks, and
+          communicate software quality.
         </p>
       </PageIntro>
       <div className="two-grid section">

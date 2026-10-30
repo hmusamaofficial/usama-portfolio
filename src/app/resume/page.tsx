@@ -41,11 +41,9 @@ export default function Resume() {
             <h3>
               {profile.role} · {profile.company}
             </h3>
-            <span>{profile.joinedLabel} – Present</span>
+            <span>{profile.employmentStatus}</span>
           </div>
-          <p className="resume-location">
-            {profile.location} · Joined June 7, 2025
-          </p>
+          <p className="resume-location">{profile.location}</p>
           <ul>
             {profile.responsibilities.map((r) => (
               <li key={r}>{r}</li>

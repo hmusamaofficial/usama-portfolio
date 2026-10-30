@@ -24,8 +24,6 @@ export default function Projects() {
         <h2>More experiments</h2>
         <p>
           A small coin-flip game is also available in my public repositories.
-          Older ERP prototypes are omitted here pending a confidentiality
-          review.
         </p>
         <a
           className="text-link"

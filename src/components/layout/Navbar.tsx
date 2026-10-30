@@ -24,7 +24,7 @@ export default function Navbar() {
         <Link
           className="brand"
           href="/"
-          aria-label="Muhammad Usama home"
+          aria-label="mu. Muhammad Usama SQA & Automation — home"
           onClick={() => setOpen(false)}
         >
           <span className="monogram">
@@ -61,6 +61,7 @@ export default function Navbar() {
           {navigation.map(([name, href]) => (
             <Link
               key={href}
+              prefetch={false}
               href={href}
               aria-current={pathname === href ? "page" : undefined}
               onClick={() => setOpen(false)}

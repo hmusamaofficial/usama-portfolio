@@ -1,10 +1,9 @@
-// Public, user-confirmed facts. See docs/content-provenance.md for unresolved history.
+// Public profile: user-supplied skills and prior portfolio content. See docs/content-provenance.md.
 export const profile = {
   name: "Muhammad Usama",
   role: "SQA / QA Engineer",
   company: "Texinnova",
-  joined: "2025-06-07",
-  joinedLabel: "June 2025",
+  employmentStatus: "Current",
   location: "Lahore, Pakistan",
   email: "hmusama2018@gmail.com",
   url: "https://hmusama.vercel.app",
@@ -112,7 +111,7 @@ export const projects = [
       "A small game is a practical way to work with state transitions and immediate visual feedback.",
     work: "The public implementation includes a canvas game loop, food and self-collision checks, wrapping and wall modes, keyboard controls, touch gestures, and adjustable speed.",
     evidence:
-      "Implementation details are visible in the public index.html. This is a personal project, not a claim of production-scale engineering or exhaustive test coverage.",
+      "The public index.html contains the game logic and input handling described here. Inspect it to see the implementation and its boundaries.",
     takeaway:
       "From a QA perspective, game rules make useful boundaries visible: restart, pause, direction changes, and collision behavior.",
     href: "https://github.com/hmusamaofficial/Panda-Snake-Game/blob/main/index.html",

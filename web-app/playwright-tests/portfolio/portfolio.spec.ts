@@ -95,7 +95,7 @@ for (const theme of ["light", "dark"] as const)
     for (const route of ["/", "/contact", "/resume"]) {
       await page.goto(route);
       const results = await new AxeBuilder({ page })
-        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+        .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
         .analyze();
       expect(results.violations, `${route} ${theme}`).toEqual([]);
     }

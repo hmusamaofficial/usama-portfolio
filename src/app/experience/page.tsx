@@ -3,7 +3,7 @@ import { profile } from "@/data/profile";
 import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata(
   "Experience",
-  "Muhammad Usama’s SQA engineering work at Texinnova since June 7, 2025: ERP testing and automation.",
+  "Muhammad Usama’s SQA engineering work at Texinnova: ERP testing and practical automation.",
   "/experience",
 );
 export default function Experience() {
@@ -20,9 +20,8 @@ export default function Experience() {
       </PageIntro>
       <section className="experience section">
         <div>
-          <p className="eyebrow">{profile.joinedLabel} — PRESENT</p>
+          <p className="eyebrow">{profile.employmentStatus} ROLE</p>
           <p>{profile.location}</p>
-          <small>Joined June 7, 2025</small>
         </div>
         <article>
           <h2>{profile.role}</h2>
