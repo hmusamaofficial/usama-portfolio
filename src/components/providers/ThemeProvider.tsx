@@ -1,60 +1,31 @@
-'use client';
-
-import { createContext, useContext, useEffect, useState } from 'react';
-
-type Theme = 'light' | 'dark';
-
-interface ThemeContextType {
-  theme: Theme;
-  toggleTheme: () => void;
-  mounted: boolean;
+"use client";
+import { createContext, useContext, useSyncExternalStore } from "react";
+const ThemeContext = createContext({ theme: "light", toggleTheme: () => {} });
+function subscribe(callback: () => void) {
+  window.addEventListener("theme-change", callback);
+  return () => window.removeEventListener("theme-change", callback);
 }
-
-const ThemeContext = createContext<ThemeContextType>({
-  theme: 'light',
-  toggleTheme: () => {},
-  mounted: false,
-});
-
+function snapshot() {
+  return document.documentElement.dataset.theme || "light";
+}
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      // Default to light theme
-      setTheme('light');
+  const theme = useSyncExternalStore(subscribe, snapshot, () => "light");
+  function toggleTheme() {
+    const next = snapshot() === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      /* Storage is optional. */
     }
-  }, []);
-
-  useEffect(() => {
-    if (mounted) {
-      const root = document.documentElement;
-      if (theme === 'dark') {
-        root.classList.add('dark');
-      } else {
-        root.classList.remove('dark');
-      }
-      localStorage.setItem('theme', theme);
-    }
-  }, [theme, mounted]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
-
+    window.dispatchEvent(new Event("theme-change"));
+  }
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, mounted }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
 }
-
 export function useTheme() {
   return useContext(ThemeContext);
 }
