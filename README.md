@@ -1,103 +1,54 @@
-# Muhammad Usama - QA Engineer Portfolio
+# Muhammad Usama — SQA & Automation
 
-A stunning, professional portfolio website built with Next.js, Tailwind CSS, and Framer Motion.
+A focused, accessible portfolio built with Next.js App Router, React, TypeScript, and plain CSS. Public content is server-rendered; client code handles navigation, theme choice, and contact submission.
 
-🌐 **Live Site:** [usama.vercel.app](https://usama.vercel.app)
+## Develop
 
-## ✨ Features
+Requires Node.js 22+ (Node 24 used for this release).
 
-- **Modern Design**: Clean, professional UI with glassmorphism effects
-- **Dark/Light Mode**: Toggle between themes with smooth transitions
-- **Responsive**: Fully responsive design for all devices
-- **Animations**: Smooth Framer Motion animations throughout
-- **Multi-page**: Complete portfolio with About, Skills, Experience, Services, and Contact pages
-- **SEO Optimized**: Meta tags and OpenGraph for social sharing
-- **Performance**: Optimized for fast loading and Core Web Vitals
-
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 14 (App Router)
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Type Animation**: react-type-animation
-- **Deployment**: Vercel
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-cd usama-portfolio
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Run the development server:
-```bash
+```sh
+npm ci
+cp .env.example .env.local
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+No secrets are required to browse the site. Contact delivery requires server-side mail configuration. Production also requires a Redis REST rate limiter; it deliberately fails closed if unavailable.
 
-## 📁 Project Structure
+## Validate
 
-```
-src/
-├── app/
-│   ├── about/
-│   │   └── page.tsx
-│   ├── contact/
-│   │   └── page.tsx
-│   ├── experience/
-│   │   └── page.tsx
-│   ├── services/
-│   │   └── page.tsx
-│   ├── skills/
-│   │   └── page.tsx
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── components/
-│   ├── layout/
-│   │   ├── Footer.tsx
-│   │   └── Navbar.tsx
-│   └── providers/
-│       └── ThemeProvider.tsx
+```sh
+npm run lint
+npm run typecheck
+npm test
+npm run resume:check # requires Poppler (pdfinfo and pdftotext)
+npm run build
+npx playwright install chromium
+npm run test:e2e
 ```
 
-## 📦 Deployment to Vercel
+The Playwright runner starts the production build on `127.0.0.1:3100`. It uses mocked contact responses, no real inbox, no employer services, and no production database. Tests cover mobile/tablet/desktop, navigation, metadata, internal links, light/dark accessibility scans, reduced motion, form success/failure/partial delivery, and PDF availability. Backend tests and test mocks live under `backend/tests/`.
 
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy!
+## Update content and résumé
 
-Or use the Vercel CLI:
+Edit `src/data/profile.ts`. Keep statements factual and consult [content provenance](docs/content-provenance.md) before restoring unresolved history. Résumé and site use the same profile data.
 
-```bash
-npm i -g vercel
-vercel
+```sh
+npm run build
+npm run start -- --port 3100
+# In another terminal:
+npm run resume:pdf
 ```
 
-## 📧 Contact
+Commit `public/Muhammad-Usama-Resume.pdf` after changes. Render the actual PDF with a PDF renderer and inspect all pages for clipping, readable type, correct links and A4 size. The current design uses 10.5 pt body text, not a scaled screenshot. `/resume.html` redirects to `/resume` for compatibility.
 
-- **Email**: hmusama2018@gmail.com
-- **LinkedIn**: [linkedin.com/in/hmusama](https://linkedin.com/in/hmusama)
-- **GitHub**: [github.com/hmusamaofficial](https://github.com/hmusamaofficial)
+## Structure
 
-## 📄 License
+- `src/data/profile.ts`: public professional facts, skills, project evidence, navigation
+- `src/app/`: server-rendered routes, route metadata, résumé, sitemap and social image
+- `src/components/`: shared layout and interactive form
+- `src/lib/`: metadata, validation, mail delivery and distributed rate limiting
+- `backend/tests/`: isolated service/route tests; no SMTP calls
+- `web-app/playwright-tests/portfolio/`: browser regressions
+- `docs/`: provenance, deployment instructions, verification and screenshots
 
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-Made with ❤️ by Muhammad Usama
+See [deployment](docs/deployment.md) and [verification](docs/verification.md). Production promotion requires owner approval.

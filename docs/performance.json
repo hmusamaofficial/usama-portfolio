@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-30T13:42:21.493Z",
+  "lighthouseVersion": "13.6.0",
+  "environment": "Local production build; Lighthouse simulated mobile throttling; lab data only",
+  "scores": {
+    "performance": 91,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100,
+    "agentic-browsing": 100
+  },
+  "metrics": {
+    "first-contentful-paint": "0.8 s",
+    "largest-contentful-paint": "0.8 s",
+    "total-blocking-time": "380 ms",
+    "cumulative-layout-shift": "0",
+    "speed-index": "0.8 s"
+  },
+  "logoAccessibleName": 1,
+  "notes": []
+}
